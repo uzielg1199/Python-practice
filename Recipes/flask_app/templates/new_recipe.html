@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Recipes</title>
+</head>
+<body>
+    <nav>
+        <h1>Welcome {{user.first_name}}!!!</h1>
+        <div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+    <form action="/create/recipe" method="post">
+        <h2>Add a New Recipe</h2>
+        {% with messages = get_flashed_messages(category_filter=['recipe']) %}
+            {% if messages %}
+            <div>
+                <strong>Flash</strong>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+            </div>
+            {% endif %}
+        {% endwith %}
+        <div>
+            <div>
+                <div>
+                    <label>Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <div>
+                    <label>Description:</label>
+                    <textarea name="description"  cols="30" rows="5"></textarea>
+                </div>
+                <div>
+                    <label>Instructions:</label>
+                    <textarea name="instructions"  cols="30" rows="5"></textarea>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label>Date Made:</label>
+                    <input type="date" name="date_made">
+                </div>
+                <label>Under 30 Minutes?:</label>
+                <div>
+                    <input type="radio" name="under30" value="0">
+                    <label>No</label>
+                </div>
+                <div>
+                    <input type="radio" name="under30" value="1">
+                    <label>Yes</label>
+                </div>
+                <br>
+                <button>Add Recipe</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
